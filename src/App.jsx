@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { HugeiconsIcon } from '@hugeicons/react';
 import {
+  HugeiconsIcon,
   File02Icon,
   Settings02Icon,
   Building03Icon,
@@ -22,7 +22,7 @@ import {
   SignatureIcon,
   SparklesIcon,
   RefreshIcon
-} from '@hugeicons/core-free-icons';
+} from './components/Hugeicons';
 import confetti from 'canvas-confetti';
 
 import { parseApplicationPdf, SAMPLE_APPLICATION_DATA } from './utils/pdfParser';
