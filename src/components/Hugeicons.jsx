@@ -565,6 +565,19 @@ const ICONS = {
         "key": "0"
       }
     ]
+  ],
+  "ChevronDown01Icon": [
+    [
+      "path",
+      {
+        "d": "M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9",
+        "stroke": "currentColor",
+        "strokeLinecap": "round",
+        "strokeLinejoin": "round",
+        "strokeWidth": "1.5",
+        "key": "0"
+      }
+    ]
   ]
 };
 
@@ -589,6 +602,7 @@ export const ArrowRight01Icon = ICONS.ArrowRight01Icon;
 export const SignatureIcon = ICONS.SignatureIcon;
 export const SparklesIcon = ICONS.SparklesIcon;
 export const RefreshIcon = ICONS.RefreshIcon;
+export const ChevronDown01Icon = ICONS.ChevronDown01Icon;
 
 export function HugeiconsIcon({ icon, size = 20, color = 'currentColor', className = '', style = {}, ...props }) {
   if (!icon || !Array.isArray(icon)) return null;

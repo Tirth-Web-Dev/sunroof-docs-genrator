@@ -2,10 +2,10 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 /**
- * Exports the 4 agreement pages into a pristine, high-resolution A4 multi-page PDF.
+ * Exports the 4 agreement pages into a compressed A4 multi-page PDF under ~1MB.
  * @param {Object} metadata
  * @param {Function} onProgress
- * @returns {Promise<void>}
+ * @returns {Promise<string>} filename
  */
 export async function generateAgreementPdf(metadata = {}, onProgress = () => {}) {
   const pageIds = [
@@ -22,23 +22,23 @@ export async function generateAgreementPdf(metadata = {}, onProgress = () => {})
     compress: true
   });
 
-  const a4Width = 210;
+  const a4Width  = 210;
   const a4Height = 297;
 
   for (let i = 0; i < pageIds.length; i++) {
-    const pageId = pageIds[i];
+    const pageId  = pageIds[i];
     const element = document.getElementById(pageId);
 
     if (!element) {
-      console.warn(`Element with id "${pageId}" not found`);
+      console.warn(`Element "${pageId}" not found — skipping`);
       continue;
     }
 
-    onProgress({ current: i + 1, total: pageIds.length, stage: `Rendering page ${i + 1} of 4...` });
+    onProgress({ current: i + 1, total: pageIds.length, stage: `Rendering page ${i + 1} of 4…` });
 
-    // Render page to canvas with high resolution scale
+    // Lower scale = smaller file. 1.5 gives ~600–900 KB for 4 pages.
     const canvas = await html2canvas(element, {
-      scale: 2.2, // crisp high DPI
+      scale: 1.5,
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff',
@@ -46,25 +46,22 @@ export async function generateAgreementPdf(metadata = {}, onProgress = () => {})
       windowHeight: element.scrollHeight
     });
 
-    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    // JPEG at 0.72 quality keeps text crisp while cutting size significantly
+    const imgData = canvas.toDataURL('image/jpeg', 0.72);
 
     if (i > 0) {
       pdf.addPage('a4', 'portrait');
     }
 
-    pdf.addImage(imgData, 'JPEG', 0, 0, a4Width, a4Height, undefined, 'FAST');
+    pdf.addImage(imgData, 'JPEG', 0, 0, a4Width, a4Height, undefined, 'MEDIUM');
   }
 
-  onProgress({ current: 4, total: 4, stage: 'Finalizing PDF...' });
+  onProgress({ current: 4, total: 4, stage: 'Saving file…' });
 
-  const cleanName = (metadata.consumerName || 'Consumer')
-    .replace(/[^a-zA-Z0-9]/g, '_')
-    .slice(0, 30);
-  const cleanAppNo = (metadata.applicationNo || 'Agreement')
-    .replace(/[^a-zA-Z0-9\-]/g, '_');
+  const cleanName  = (metadata.consumerName  || 'Consumer').replace(/[^a-zA-Z0-9]/g, '_').slice(0, 30);
+  const cleanAppNo = (metadata.applicationNo || 'Agreement').replace(/[^a-zA-Z0-9\-]/g, '_');
+  const filename   = `Agreement_${cleanName}_${cleanAppNo}.pdf`;
 
-  const filename = `Agreement_${cleanName}_${cleanAppNo}.pdf`;
   pdf.save(filename);
-
   return filename;
 }
