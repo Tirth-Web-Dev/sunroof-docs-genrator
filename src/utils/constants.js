@@ -9,7 +9,7 @@ export const COMPANY_PROFILES = {
     label: 'Sunroof Energy',
     name: 'SUNROOF ENERGY',
     logo: logoSr,
-    address: '408-409 SILICON SPONTA, OPP. SHUBH RESIDENCY,Nr. Radhanpur Bypass Circle, Mehsana-384002',
+    address: '40-SARTHAK PALACE,52 STREET ,Nr. Radhanpur Bypass Circle, Mehsana-384002',
     stamp: sunroofStamp,
     contact: '84600 43385',
     email: 'sunroofenergymeh@gmail.com'
