@@ -1299,6 +1299,13 @@ input:checked + .pro-slider:before { transform: translateX(15px); }
   overflow: hidden;
 }
 
+/* Disable animation and enforce full opacity during PDF export */
+.is-exporting .a4-page {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @keyframes pageReveal {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }

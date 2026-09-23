@@ -234,7 +234,7 @@ export default function App() {
   ];
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${isExporting ? 'is-exporting' : ''}`}>
       {/* TOP NAVBAR */}
       <header className="pro-navbar">
         <div className="brand-wrapper">
@@ -808,7 +808,7 @@ export default function App() {
 
       {/* Exporting Overlay */}
       {isExporting && (
-        <div className="progress-overlay">
+        <div className="progress-overlay" data-html2canvas-ignore="true">
           <div className="progress-box">
             <div className="pro-spinner" />
             <div style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
