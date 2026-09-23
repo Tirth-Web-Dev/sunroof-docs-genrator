@@ -36,9 +36,9 @@ export async function generateAgreementPdf(metadata = {}, onProgress = () => {})
 
     onProgress({ current: i + 1, total: pageIds.length, stage: `Rendering page ${i + 1} of 4…` });
 
-    // Lower scale = smaller file. 1.5 gives ~600–900 KB for 4 pages.
+    // Scale 2.0 provides sharp retina-quality text. At 0.85 JPEG quality, 4 pages should be around 1.2MB–1.5MB.
     const canvas = await html2canvas(element, {
-      scale: 1.5,
+      scale: 2.0,
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff',
@@ -46,8 +46,8 @@ export async function generateAgreementPdf(metadata = {}, onProgress = () => {})
       windowHeight: element.scrollHeight
     });
 
-    // JPEG at 0.72 quality keeps text crisp while cutting size significantly
-    const imgData = canvas.toDataURL('image/jpeg', 0.72);
+    // High quality JPEG compression
+    const imgData = canvas.toDataURL('image/jpeg', 0.85);
 
     if (i > 0) {
       pdf.addPage('a4', 'portrait');

@@ -200,7 +200,8 @@ export default function App() {
     const previousMode = viewMode;
     setViewMode('all');
     setIsExporting(true);
-    await new Promise(resolve => setTimeout(resolve, 250));
+    // Wait for the .a4-page animation (0.45s) to fully complete to prevent white overlay/opacity issues
+    await new Promise(resolve => setTimeout(resolve, 600));
 
     try {
       await generateAgreementPdf(
