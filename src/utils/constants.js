@@ -39,7 +39,7 @@ export const INITIAL_AGREEMENT_DATA = {
   consumerSignatureUrl: null, // First party uploaded signature image
 
   // Agreement Execution Date
-  includeDate: false, // Default disabled as requested
+  includeDate: true, // Enabled by default
   executionDay: '19',
   executionMonth: '09',
   executionYear: '2026',
