@@ -85,7 +85,7 @@ export function DocumentPages({ data, activeTab = 'all' }) {
     <div className="document-pages-container" id="printable-agreement">
 
       {/* ══════════════════════ PAGE 1 ══════════════════════ */}
-      <div className="a4-page" id="agreement-page-1" style={{ display: isVisible('1') ? 'flex' : 'none' }}>
+      <div className="a4-page" id="agreement-page-1" style={{ display: isVisible('1') ? 'flex' : 'none', position: 'relative' }}>
         <PageLetterhead companyId={selectedCompany} />
 
         <div className="a4-page-content">
@@ -161,6 +161,18 @@ export function DocumentPages({ data, activeTab = 'all' }) {
           <div className="doc-undertaking-heading">
             The First Party hereby undertakes to perform the following activities:
           </div>
+          {consumerSignatureUrl && (
+            <div style={{ position: 'absolute', bottom: '70px', left: '50px' }}>
+              <img src={consumerSignatureUrl} alt="Signature" style={{ height: '60px', objectFit: 'contain' }} />
+            </div>
+          )}
+          {includeStamp && (
+            <div style={{ position: 'absolute', bottom: '70px', right: '50px' }}>
+              <div style={{ transform: 'scale(0.85)', transformOrigin: 'bottom right', opacity: 0.95 }}>
+                <Stamp stampImg={vendorStamp} vendorName={vendorName} customStampUrl={customStampUrl} />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="a4-page-footer">
@@ -172,7 +184,7 @@ export function DocumentPages({ data, activeTab = 'all' }) {
       </div>
 
       {/* ══════════════════════ PAGE 2 ══════════════════════ */}
-      <div className="a4-page" id="agreement-page-2" style={{ display: isVisible('2') ? 'flex' : 'none' }}>
+      <div className="a4-page" id="agreement-page-2" style={{ display: isVisible('2') ? 'flex' : 'none', position: 'relative' }}>
         <PageLetterhead companyId={selectedCompany} />
 
         <div className="a4-page-content">
@@ -200,6 +212,19 @@ export function DocumentPages({ data, activeTab = 'all' }) {
             <li><span className="clause-heading">Site Survey:</span> Site visit, survey and development of detailed project report for installation of RTS system. This also includes feasibility study of roof, strength of roof and shadow free area. If any additional work or customization is involved for the plant installation as per site condition and requirement of the consumer building, the Vendor shall prepare an estimate and can raise separate invoice including GST in addition to the amount towards standard plant cost. The consumer shall pay the amount for such additional work directly to the Vendor.</li>
             <li><span className="clause-heading">Design &amp; Engineering:</span> Design of plant along with drawings and selection of components as per standard provided by the DISCOM/SERC/MNRE for best performance and safety of the plant.</li>
           </ol>
+          
+          {consumerSignatureUrl && (
+            <div style={{ position: 'absolute', bottom: '70px', left: '50px' }}>
+              <img src={consumerSignatureUrl} alt="Signature" style={{ height: '60px', objectFit: 'contain' }} />
+            </div>
+          )}
+          {includeStamp && (
+            <div style={{ position: 'absolute', bottom: '70px', right: '50px' }}>
+              <div style={{ transform: 'scale(0.85)', transformOrigin: 'bottom right', opacity: 0.95 }}>
+                <Stamp stampImg={vendorStamp} vendorName={vendorName} customStampUrl={customStampUrl} />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="a4-page-footer">
@@ -211,7 +236,7 @@ export function DocumentPages({ data, activeTab = 'all' }) {
       </div>
 
       {/* ══════════════════════ PAGE 3 ══════════════════════ */}
-      <div className="a4-page" id="agreement-page-3" style={{ display: isVisible('3') ? 'flex' : 'none' }}>
+      <div className="a4-page" id="agreement-page-3" style={{ display: isVisible('3') ? 'flex' : 'none', position: 'relative' }}>
         <PageLetterhead companyId={selectedCompany} />
 
         <div className="a4-page-content">
@@ -226,6 +251,19 @@ export function DocumentPages({ data, activeTab = 'all' }) {
             <li><span className="clause-heading">Testing and Commissioning:</span> The vendor shall be present at the time of testing and commissioning by the DISCOM.</li>
             <li><span className="clause-heading">Operation &amp; Maintenance:</span> Five (5) years Comprehensive Operation and Maintenance including overhauling, wear and tear and regular checking of healthiness of system at proper interval shall be in the scope of vendor. The vendor shall also educate the consumer on best practices for cleaning of the modules and system maintenance.</li>
           </ol>
+          
+          {consumerSignatureUrl && (
+            <div style={{ position: 'absolute', bottom: '70px', left: '50px' }}>
+              <img src={consumerSignatureUrl} alt="Signature" style={{ height: '60px', objectFit: 'contain' }} />
+            </div>
+          )}
+          {includeStamp && (
+            <div style={{ position: 'absolute', bottom: '70px', right: '50px' }}>
+              <div style={{ transform: 'scale(0.85)', transformOrigin: 'bottom right', opacity: 0.95 }}>
+                <Stamp stampImg={vendorStamp} vendorName={vendorName} customStampUrl={customStampUrl} />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="a4-page-footer">

@@ -28,6 +28,7 @@ import { parseApplicationPdf, SAMPLE_APPLICATION_DATA } from './utils/pdfParser'
 import { generateAgreementPdf } from './utils/pdfGenerator';
 import { COMPANY_PROFILES, INITIAL_AGREEMENT_DATA } from './utils/constants';
 import { DocumentPages } from './components/DocumentPages';
+import { SerialScanner } from './components/SerialScanner';
 
 /* ─── Computed step from form state ─── */
 function getStep(formData, scanned) {
@@ -37,6 +38,7 @@ function getStep(formData, scanned) {
 }
 
 export default function App() {
+  const [activeModule, setActiveModule] = useState('agreement');
   const [formData, setFormData] = useState(INITIAL_AGREEMENT_DATA);
   const [theme, setTheme] = useState('dark');
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,6 +49,7 @@ export default function App() {
   const [exportProgress, setExportProgress] = useState(null);
   const [notification, setNotification] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isDraggingSig, setIsDraggingSig] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [vendorOpen, setVendorOpen] = useState(false);
@@ -242,23 +245,27 @@ export default function App() {
             <HugeiconsIcon icon={File02Icon} size={16} />
           </div>
           <div className="brand-text-group">
-            <span className="brand-heading">Agreement Generator</span>
+            <span className="brand-heading">Surya Ghar Tools</span>
             <span className="brand-sub">PM Surya Ghar · Rooftop Solar</span>
           </div>
-          <div className="brand-divider" />
-          {scanned && formData.consumerName && (
-            <span style={{
-              fontSize: '0.68rem', fontWeight: 600,
-              color: 'var(--accent-green)',
-              background: 'var(--accent-green-dim)',
-              border: '1px solid rgba(34,197,94,0.2)',
-              borderRadius: 'var(--radius-pill)',
-              padding: '2px 9px',
-              letterSpacing: '-0.01em'
-            }}>
-              ✓ {formData.consumerName.split(' ')[0]}
-            </span>
-          )}
+        </div>
+
+        {/* Module Switcher Tabs */}
+        <div className="module-tabs-wrapper">
+          <button 
+            type="button"
+            className={`module-tab-btn ${activeModule === 'agreement' ? 'active' : ''}`}
+            onClick={() => setActiveModule('agreement')}
+          >
+            Agreement Generator
+          </button>
+          <button 
+            type="button"
+            className={`module-tab-btn ${activeModule === 'scanner' ? 'active' : ''}`}
+            onClick={() => setActiveModule('scanner')}
+          >
+            Serial Scanner
+          </button>
         </div>
 
         <div className="navbar-right-actions">
@@ -282,21 +289,28 @@ export default function App() {
             </button>
           </div>
 
-          {/* Download */}
-          <button
-            type="button"
-            className="btn-download-pdf"
-            onClick={handleDownloadPdf}
-            disabled={isExporting}
-          >
-            <HugeiconsIcon icon={Download04Icon} size={14} />
-            {isExporting ? 'Generating…' : 'Download PDF'}
-          </button>
+          {/* Download (Only shown in agreement module) */}
+          {activeModule === 'agreement' && (
+            <button
+              type="button"
+              className="btn-download-pdf"
+              onClick={handleDownloadPdf}
+              disabled={isExporting}
+            >
+              <HugeiconsIcon icon={Download04Icon} size={14} />
+              {isExporting ? 'Generating…' : 'Download PDF'}
+            </button>
+          )}
         </div>
       </header>
 
-      {/* MAIN LAYOUT */}
-      <div className="main-layout-grid">
+      {/* MAIN CONTENT AREA */}
+      {activeModule === 'scanner' ? (
+        <div className="scanner-module-container" style={{ flex: 1, overflowY: 'auto', padding: '20px 30px' }}>
+          <SerialScanner showNotification={showNotification} />
+        </div>
+      ) : (
+        <div className="main-layout-grid">
 
         {/* ── LEFT SIDEBAR ── */}
         <aside className="sidebar-panel-container">
@@ -606,37 +620,52 @@ export default function App() {
                   {/* First Party Signature */}
                   <div className="field-group">
                     <div className="field-label-row">
-                      <span className="field-label">Customer Signature (Page 4)</span>
+                      <span className="field-label">Customer Signature (Every Page)</span>
                       {formData.consumerSignatureUrl && (
                         <span style={{ fontSize: '0.65rem', color: 'var(--accent-green)', fontWeight: 700 }}>
                           Uploaded ✓
                         </span>
                       )}
                     </div>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <button
-                        type="button"
-                        className="btn-cta-full"
-                        style={{ flex: 1 }}
-                        onClick={() => consumerSigInputRef.current?.click()}
-                      >
-                        <HugeiconsIcon icon={SignatureIcon} size={14} />
+                    <div
+                      className={`scan-hero-zone ${isDraggingSig ? 'drag-active' : ''}`}
+                      onDragOver={e => { e.preventDefault(); setIsDraggingSig(true); }}
+                      onDragLeave={() => setIsDraggingSig(false)}
+                      onDrop={e => {
+                        e.preventDefault();
+                        setIsDraggingSig(false);
+                        const file = e.dataTransfer.files?.[0];
+                        if (file) {
+                          const url = URL.createObjectURL(file);
+                          setFormData(prev => ({ ...prev, consumerSignatureUrl: url }));
+                          showNotification('Signature uploaded ✓', 'success');
+                        }
+                      }}
+                      onClick={() => consumerSigInputRef.current?.click()}
+                      style={{ padding: '20px', minHeight: 'auto', marginBottom: '8px', cursor: 'pointer' }}
+                    >
+                      <div className="scan-icon-ring">
+                        <HugeiconsIcon icon={SignatureIcon} size={20} />
+                      </div>
+                      <div className="scan-hero-title">
                         {formData.consumerSignatureUrl ? 'Change Signature' : 'Upload Signature'}
-                      </button>
-                      {formData.consumerSignatureUrl && (
+                      </div>
+                      <div className="scan-hero-sub">
+                        Drop signature image here or click to browse
+                      </div>
+                    </div>
+                    {formData.consumerSignatureUrl && (
+                      <div className="sig-preview-row" style={{ marginTop: '8px' }}>
+                        <img src={formData.consumerSignatureUrl} alt="Signature" className="sig-thumb" />
+                        <span className="sig-desc">Shown on all pages (bottom right)</span>
                         <button
                           type="button"
                           className="btn-pill-subtle danger"
-                          onClick={() => updateField('consumerSignatureUrl', null)}
+                          onClick={e => { e.stopPropagation(); updateField('consumerSignatureUrl', null); }}
+                          style={{ marginLeft: 'auto' }}
                         >
                           Remove
                         </button>
-                      )}
-                    </div>
-                    {formData.consumerSignatureUrl && (
-                      <div className="sig-preview-row">
-                        <img src={formData.consumerSignatureUrl} alt="Signature" className="sig-thumb" />
-                        <span className="sig-desc">Shown in First Party signature cell</span>
                       </div>
                     )}
                     <input
@@ -805,6 +834,7 @@ export default function App() {
           </div>
         </main>
       </div>
+      )}
 
       {/* Exporting Overlay */}
       {isExporting && (
