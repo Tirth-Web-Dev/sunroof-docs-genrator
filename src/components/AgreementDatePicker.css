@@ -1,0 +1,363 @@
+/* ================================================================
+   APPLE LIQUID GLASS DATE PICKER & POPOVER
+   ================================================================ */
+
+.lg-date-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 6px 5px 10px;
+  border-radius: 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-card);
+  box-shadow: none;
+  transition: border-color 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
+}
+
+.lg-date-pill:hover {
+  border-color: rgba(15, 23, 42, 0.16);
+  background: #ffffff;
+}
+
+.lg-date-pill:focus-within,
+.lg-date-pill.open {
+  border-color: var(--apple-blue);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--apple-blue-ring);
+}
+
+.lg-date-segments {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.lg-date-seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.lg-date-seg.year {
+  flex: 1.45;
+}
+
+.lg-date-seg-lbl {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-label);
+  line-height: 1;
+  margin-bottom: 1px;
+}
+
+.lg-date-seg-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 100% !important;
+  text-align: center;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.84rem !important;
+  font-weight: 600;
+  color: var(--text-main) !important;
+  padding: 1px 0 !important;
+  line-height: 1.25;
+}
+
+.lg-date-seg-input:focus {
+  color: var(--apple-blue) !important;
+}
+
+.lg-date-sep {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.55;
+  user-select: none;
+  margin-top: 8px;
+}
+
+.lg-date-cal-trigger {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-card);
+  background: #ffffff;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  box-shadow: var(--shadow-xs);
+}
+
+.lg-date-cal-trigger:hover,
+.lg-date-cal-trigger.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ── Floating Liquid Glass Calendar Popover ── */
+.lg-calendar-popover {
+  position: fixed;
+  width: 292px;
+  padding: 15px;
+  border-radius: 20px;
+  background: var(--glass-popover);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.07),
+    0 20px 50px -10px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 #ffffff;
+  z-index: 10050;
+  transform-origin: top center;
+  animation: lgPopoverIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  user-select: none;
+}
+
+@keyframes lgPopoverIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.lg-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.lg-cal-month-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  padding: 5px 8px;
+  margin-left: -6px;
+  border-radius: 9999px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.lg-cal-month-btn:hover {
+  background: var(--glass-hover);
+}
+
+.lg-cal-month-chevron {
+  display: inline-flex;
+  color: var(--apple-blue);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lg-cal-month-chevron.open {
+  transform: rotate(90deg);
+}
+
+.lg-cal-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lg-cal-nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--apple-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.lg-cal-nav-btn:hover {
+  background: var(--apple-blue-soft);
+  border-color: rgba(0, 122, 255, 0.18);
+}
+
+.lg-cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.lg-cal-weekday {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 4px 0;
+}
+
+.lg-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.lg-cal-day {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lg-cal-day:hover:not(.selected) {
+  background: var(--glass-hover);
+}
+
+.lg-cal-day.muted {
+  color: var(--text-label);
+  opacity: 0.55;
+}
+
+.lg-cal-day.today {
+  border: 1.5px solid rgba(0, 122, 255, 0.45);
+  color: var(--apple-blue);
+  font-weight: 700;
+}
+
+.lg-cal-day.selected {
+  background: var(--apple-blue-soft);
+  color: var(--apple-blue);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(0, 122, 255, 0.28);
+}
+
+/* Month / Year Picker Subpanel */
+.lg-cal-ym-panel {
+  padding: 4px 0 8px;
+}
+
+.lg-cal-year-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+  border-radius: 9999px;
+  background: var(--glass-pill-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.lg-cal-year-display {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+}
+
+.lg-cal-months-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.lg-cal-month-chip {
+  padding: 8px 4px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lg-cal-month-chip:hover {
+  background: var(--glass-hover);
+  color: var(--text-main);
+}
+
+.lg-cal-month-chip.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  box-shadow: 0 4px 12px var(--apple-blue-glow);
+}
+
+.lg-cal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.lg-cal-footer-btn {
+  flex: 1;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-pill-bg);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.lg-cal-footer-btn:hover {
+  background: var(--glass-hover);
+  color: var(--text-main);
+}
+
+.lg-cal-footer-btn.primary {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 58%), var(--apple-blue);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow:
+    0 3px 12px var(--apple-blue-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.lg-cal-footer-btn.primary:hover {
+  filter: brightness(1.06);
+}
+
+.lg-cal-footer-btn.primary:active {
+  transform: scale(0.97);
+  filter: brightness(0.98);
+}
+

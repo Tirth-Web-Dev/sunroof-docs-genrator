@@ -1,0 +1,273 @@
+/* ================================================================
+   OFFICIAL PM SURYA GHAR ANNEXURE 2 — GOVERNMENT DRAFT (3 PAGES)
+   Plain white legal paper · Black serif ink · Zero decorative chrome
+   ================================================================ */
+
+.a4-page.official-a4-page {
+  width: 794px;
+  min-height: 1123px;
+  height: 1123px;
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-family: 'Times New Roman', 'Source Serif 4', Georgia, serif;
+  padding: 36px 48px 24px 48px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-paper);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.official-page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.official-annexure-heading {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin: 0 0 8px 0;
+  color: #000000;
+}
+
+.official-main-title {
+  text-align: center;
+  font-size: 12.8px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 auto 12px auto;
+  color: #000000;
+  max-width: 660px;
+}
+
+.official-para {
+  font-family: 'Times New Roman', 'Source Serif 4', Georgia, serif;
+  font-size: 11.7px;
+  line-height: 1.44;
+  text-align: justify;
+  color: #000000;
+  margin: 0 0 7px 0;
+}
+
+.official-center-word {
+  text-align: center;
+  font-size: 11.8px;
+  font-weight: 700;
+  color: #000000;
+  margin: 6px 0;
+}
+
+.official-undertaking-title {
+  font-size: 11.8px;
+  font-weight: 700;
+  color: #000000;
+  margin: 8px 0 6px 0;
+  line-height: 1.42;
+}
+
+.official-clause-list {
+  margin: 0;
+  padding-left: 22px;
+  list-style-type: decimal;
+  display: flex;
+  flex-direction: column;
+  gap: 6.5px;
+}
+
+.official-clause-list li {
+  font-family: 'Times New Roman', 'Source Serif 4', Georgia, serif;
+  font-size: 11.6px;
+  line-height: 1.44;
+  text-align: justify;
+  color: #000000;
+  padding-left: 6px;
+}
+
+.official-clause-lead {
+  font-weight: 700;
+}
+
+.official-payment-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+  margin: 14px 0 10px 0;
+}
+
+/* Official Page 3 Signature Table (HeroUI Nested Card) */
+.official-hu-table {
+  margin: 12px 0 14px 0;
+  font-family: 'Times New Roman', 'Source Serif 4', Georgia, serif;
+}
+
+.official-hu-grid {
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+.official-hu-table .hu-th {
+  font-size: 11.8px;
+  font-weight: 700;
+  color: #374151;
+  padding: 2px 10px;
+}
+
+.official-hu-cell {
+  padding: 8px 12px;
+  font-size: 11.6px;
+  line-height: 1.4;
+  color: #000000;
+  border-right: 1px solid #eef2f6;
+}
+
+.official-hu-cell:last-child {
+  border-right: none;
+}
+
+.official-table-subline {
+  margin-top: 5px;
+}
+
+.official-sign-cell {
+  height: 106px;
+}
+
+.official-sign-label {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.official-table-sig-wrap {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 14px;
+}
+
+.official-table-sig-img {
+  max-height: 62px;
+  max-width: 165px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.official-table-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.official-a4-page .official-table-stamp .company-stamp-img {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: rotate(-2deg);
+}
+
+.official-a4-page .official-table-stamp .official-seal-svg {
+  width: 84px;
+  height: 84px;
+}
+
+.official-disclaimer {
+  margin-top: auto;
+  padding-top: 10px;
+  font-family: 'Times New Roman', 'Source Serif 4', Georgia, serif;
+  font-size: 11.3px;
+  line-height: 1.44;
+  color: #000000;
+  text-align: justify;
+}
+
+/* Official Footer (Bottom-left sign, Bottom-right stamp + page number) */
+.official-page-footer {
+  margin-top: auto;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.official-footer-signs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: 62px;
+  padding: 0 8px;
+}
+
+.official-footer-sig-slot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-width: 130px;
+  height: 58px;
+}
+
+.official-footer-sig-img {
+  max-height: 48px;
+  max-width: 145px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.official-footer-stamp-slot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-width: 90px;
+  height: 62px;
+}
+
+.official-a4-page .official-footer-stamp-slot .company-stamp-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: rotate(-2deg);
+}
+
+.official-a4-page .official-footer-stamp-slot .official-seal-svg {
+  width: 62px;
+  height: 62px;
+}
+
+.official-page-number {
+  text-align: right;
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: 10px;
+  color: #4b5563;
+  line-height: 1;
+  padding-right: 2px;
+}
+
+@media print {
+  .a4-page.official-a4-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    padding: 10mm 13.5mm 7mm 13.5mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .official-page-footer {
+    padding-top: 4px !important;
+  }
+}

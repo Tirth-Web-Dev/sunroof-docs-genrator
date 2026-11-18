@@ -578,13 +578,47 @@ const ICONS = {
         "key": "0"
       }
     ]
+  ],
+  "CallIcon": [
+    ["path", { "d": "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "0" }]
+  ],
+  "MailIcon": [
+    ["path", { "d": "M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "0" }],
+    ["path", { "d": "M2 7l10 7 10-7", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "1" }]
+  ],
+  "SolarPanel03Icon": [
+    ["path", { "d": "M8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "0" }],
+    ["path", { "d": "M12 2V3.5M8 3.5L9.2 4.7M16 3.5L14.8 4.7M5.5 7.5H7M17 7.5H18.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "1" }],
+    ["path", { "d": "M5.5 8H18.5L21 19H3L5.5 8Z", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "2" }],
+    ["path", { "d": "M4.2 13.5H19.8", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "3" }],
+    ["path", { "d": "M10 8L9.2 19", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "4" }],
+    ["path", { "d": "M14 8L14.8 19", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "5" }],
+    ["path", { "d": "M7.5 19L6.5 22M16.5 19L17.5 22", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "6" }]
+  ],
+  "RupeeShieldIcon": [
+    ["path", { "d": "M12 2.5L4.5 5.5V11.5C4.5 16.5 8 20.7 12 22C16 20.7 19.5 16.5 19.5 11.5V5.5L12 2.5Z", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "0" }],
+    ["path", { "d": "M9 7.5H15", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "1" }],
+    ["path", { "d": "M9 10H13.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeWidth": "1.5", "key": "2" }],
+    ["path", { "d": "M10 7.5V12C12.2 12 14 11 14 9.75C14 8.5 12.2 7.5 10 7.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "3" }],
+    ["path", { "d": "M10.8 12L14.5 16.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "4" }]
+  ],
+  "User02Icon": [
+    ["circle", { "cx": "12", "cy": "7", "r": "4", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "0" }],
+    ["path", { "d": "M20 21C20 16.5817 16.4183 13 12 13C7.58172 13 4 16.5817 4 21", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "1" }]
+  ],
+  "Logout01Icon": [
+    ["path", { "d": "M15 16.5V19C15 20.1046 14.1046 21 13 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3H13C14.1046 3 15 3.89543 15 5.5V7.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "0" }],
+    ["path", { "d": "M10 12H21M21 12L17.5 8.5M21 12L17.5 15.5", "stroke": "currentColor", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeWidth": "1.5", "key": "1" }]
   ]
 };
 
 export const File02Icon = ICONS.File02Icon;
+export const CallIcon = ICONS.CallIcon;
+export const MailIcon = ICONS.MailIcon;
 export const Settings02Icon = ICONS.Settings02Icon;
 export const Building03Icon = ICONS.Building03Icon;
 export const UserIcon = ICONS.UserIcon;
+export const User02Icon = ICONS.User02Icon;
 export const Calendar03Icon = ICONS.Calendar03Icon;
 export const Download04Icon = ICONS.Download04Icon;
 export const Sun03Icon = ICONS.Sun03Icon;
@@ -603,6 +637,9 @@ export const SignatureIcon = ICONS.SignatureIcon;
 export const SparklesIcon = ICONS.SparklesIcon;
 export const RefreshIcon = ICONS.RefreshIcon;
 export const ChevronDown01Icon = ICONS.ChevronDown01Icon;
+export const SolarPanel03Icon = ICONS.SolarPanel03Icon;
+export const RupeeShieldIcon = ICONS.RupeeShieldIcon;
+export const Logout01Icon = ICONS.Logout01Icon;
 
 export function HugeiconsIcon({ icon, size = 20, color = 'currentColor', className = '', style = {}, ...props }) {
   if (!icon || !Array.isArray(icon)) return null;

@@ -8,7 +8,7 @@ export function Stamp({ stampImg, vendorName = 'SUNROOF ENERGY', customStampUrl 
 
   if (activeStampSrc) {
     return (
-      <div className="stamp-container">
+      <div className="stamp-container stamp-ink-press" key={activeStampSrc}>
         <img
           src={activeStampSrc}
           alt={`${vendorName} Official Stamp`}
